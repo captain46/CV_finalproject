@@ -6,10 +6,28 @@
     <link rel="stylesheet" href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" />
     <script src="/webjars/jquery/3.1.1-1/jquery.min.js"></script>
     <script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+    <script src='https://code.responsivevoice.org/responsivevoice.js'></script>
+    <script type='text/javascript' src='../static/js/result.js.js' th:src='@{js/result.js}' defer=""></script>
 </head>
 <body>
 <div th:replace="fragments/header :: header"></div>
-<p th:text="*{picture.result}"></p>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2 class="panel-title pull-left">Output</h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="panel-body">
+                    <div th:text="*{picture.result}" id="resultText"></div>
+                    <button type="button" class="btn btn-default" id="textToSpeech">🔊 Play</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div th:replace="fragments/footer :: footer"></div>
 </body>
 </html>
