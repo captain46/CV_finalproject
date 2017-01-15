@@ -1,5 +1,7 @@
 package es.uah.ocr;
 
+import es.uah.ocr.domain.OCRPicture;
+
 import java.io.File;
 import java.nio.file.Path;
 
@@ -11,9 +13,10 @@ import java.nio.file.Path;
  */
 public interface OCRService {
 
-    String imageToText(String absolutePath);
+    OCRPicture getOCRPicture(String absolutePath);
 
-    String imageToText(Path path);
+    OCRPicture getOCRPicture(Path path);
 
-    String imageToText(File file);
+    OCRPicture getOCRPicture(File file);
+
 }

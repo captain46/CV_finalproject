@@ -17,12 +17,21 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h2 class="panel-title pull-left">Output</h2>
+                    <h2 class="panel-title pull-left">Result Text</h2>
                     <div class="clearfix"></div>
                 </div>
                 <div class="panel-body">
-                    <div th:text="*{picture.result}" id="resultText"></div>
+                    <div th:text="${resultText}" id="resultText"></div>
                     <button type="button" class="btn btn-default" id="textToSpeech">🔊 Play</button>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2 class="panel-title pull-left">Result Image</h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="panel-body">
+                    <img th:src="*{'data:image/png;base64,'+image}" alt="result image" th:width="600" width="600"/>
                 </div>
             </div>
         </div>

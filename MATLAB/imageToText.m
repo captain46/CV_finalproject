@@ -1,4 +1,4 @@
-function y = imageToText(x)
+function [y,z] = imageToText(x)
 colorImage = imread(x);
 I = rgb2gray(colorImage);
 
@@ -124,3 +124,5 @@ textBBoxes(numRegionsInGroup == 1, :) = [];
 ITextRegion = insertShape(colorImage, 'Rectangle', textBBoxes,'LineWidth',3);
 ocrtxt = ocr(I, textBBoxes);
 y = [ocrtxt.Text];
+z = ITextRegion;
+end

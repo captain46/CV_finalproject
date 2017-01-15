@@ -8,7 +8,6 @@ import org.springframework.web.multipart.MultipartFile;
 public class Picture {
     private String name;
     private MultipartFile file;
-    private String result;
 
     public Picture() {
     }
@@ -34,11 +33,4 @@ public class Picture {
         this.file = file;
     }
 
-    public String getResult() {
-        return result;
-    }
-
-    public void setResult(String result) {
-        this.result = result;
-    }
 }

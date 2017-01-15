@@ -2,12 +2,16 @@ package es.uah.controller;
 
 import es.uah.domain.Picture;
 import es.uah.ocr.OCRService;
+import es.uah.ocr.domain.OCRPicture;
 import es.uah.service.UploadFileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import sun.misc.BASE64Encoder;
 
 import java.io.File;
 
@@ -16,8 +20,6 @@ import java.io.File;
  */
 @Controller
 public class FileUploadController {
-
-
 
     @Autowired
     @Qualifier("UploadFileServiceImpl")
@@ -40,13 +42,14 @@ public class FileUploadController {
 
     @RequestMapping(value = "showresult", method = RequestMethod.GET)
     public void showResult(Model model) {
-        // TODO
         File imageToProcess = new File(System.getProperty("user.dir") + "/docs/pics/").listFiles()[0];
-        String result = ocrService.imageToText(imageToProcess);
-        Picture picture = new Picture();
-        picture.setResult(result);
-        model.addAttribute("picture", picture);
+        OCRPicture ocrPicture = ocrService.getOCRPicture(imageToProcess);
+        model.addAttribute("resultText", ocrPicture.getContainingText());
+
+        BASE64Encoder encoder = new BASE64Encoder();
+        String base64string = encoder.encode(ocrPicture.getResultImage());
+
+        model.addAttribute("image", base64string);
         uploadFileService.deleteFiles();
     }
-
 }
