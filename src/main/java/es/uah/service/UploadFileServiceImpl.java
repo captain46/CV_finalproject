@@ -21,13 +21,16 @@ public class UploadFileServiceImpl implements UploadFileService {
             picture.setName(picture.getFile().getOriginalFilename());
 
             if(!new File(PATH).exists()) {
-                new File(PATH).mkdir();
+                File directory = new File(PATH);
+                directory.mkdir();
+                directory.setReadable(true);
             }
 
             String filePath = PATH + picture.getName();
             File file = new File(filePath);
             try {
                 picture.getFile().transferTo(file);
+                file.setReadable(true);
             } catch (IOException e) {
                 e.printStackTrace();
             }

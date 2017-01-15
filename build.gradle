@@ -19,7 +19,7 @@ jar {
 	version = '0.0.1-SNAPSHOT'
 }
 
-sourceCompatibility = 1.8
+sourceCompatibility = 1.7
 
 repositories {
 	mavenCentral()
@@ -29,8 +29,15 @@ repositories {
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
 	compile('org.springframework.boot:spring-boot-starter-web')
+	compile('org.apache.commons:commons-lang3:3.5')
+
+	// MATLAB Bindings
+	compile files('libs/javabuilder.jar')
+	compile files('libs/imageToText.jar')
+
 	compile('org.webjars:bootstrap:3.3.7-1')
 	compile('org.webjars:jquery:3.1.1-1')
 	compile('org.springframework.boot:spring-boot-devtools')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
+
 }
