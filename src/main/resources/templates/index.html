@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>File Upload</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" />
+    <script src="/webjars/jquery/3.1.1-1/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+    <script type='text/javascript' src='../static/js/index.js' th:src='@{js/index.js}' defer=""></script>
+    <script type='text/javascript' src='../static/js/validator.min.js' th:src='@{js/validator.min.js}' defer=""></script>
+</head>
+<body>
+    <div th:replace="fragments/header :: header"></div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2 class="panel-title pull-left">Automatically Detect and Recognize Text in Natural Images</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="panel-body">
+                        <form id="uploadFile" th:action="@{/index}" method="post" enctype="multipart/form-data" data-toggle="validator">
+                            <div class="input-group">
+                                <label for="file" class="col-sm-5 control-label">Image:</label>
+                                <div class="col-sm-6">
+                                    <input type="file" id="file" th:field="*{picture.file}" value="Select a"/>
+                                    <div id="fileTooBig" class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-default" id="submitFile">Upload File</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>
