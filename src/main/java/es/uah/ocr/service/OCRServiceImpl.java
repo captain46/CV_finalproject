@@ -6,6 +6,7 @@ import es.uah.ocr.OCRService;
 import es.uah.ocr.exception.MatlabBindingException;
 import imageToText.Class1;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
@@ -17,6 +18,13 @@ import java.nio.file.Path;
  */
 @Service
 public class OCRServiceImpl implements OCRService {
+
+    private Class1 ocr;
+
+    @Autowired
+    public OCRServiceImpl(Class1 ocr) {
+        this.ocr = ocr;
+    }
 
     @Override
     public String imageToText(String absolutePath) {
@@ -47,11 +55,9 @@ public class OCRServiceImpl implements OCRService {
 
     private String executeMLBindings(String path) {
         MWCharArray mwPath = new MWCharArray(path);
-        Class1 orc;
         Object[] returnObj;
         try {
-            orc = new Class1();
-            returnObj = orc.imageToText(1, mwPath);
+            returnObj = ocr.imageToText(1, mwPath);
         } catch (MWException e) {
             throw new MatlabBindingException("Error occured while processing the image.", e.getCause());
         }
