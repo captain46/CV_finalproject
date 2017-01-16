@@ -4,6 +4,7 @@
 
 $(document).ready(function () {
     $('#submitFile').prop('disabled', true);
+    $('#loadingContainer').hide();
 });
 
 $('#file').bind('change', function () {
@@ -20,4 +21,8 @@ $('#file').bind('change', function () {
           $('#submitFile').prop('disabled', false);
        }
    }
+});
+
+$('#submitFile').click(function () {
+    $('#loadingContainer').show();
 });

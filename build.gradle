@@ -37,6 +37,7 @@ dependencies {
 
 	compile('org.webjars:bootstrap:3.3.7-1')
 	compile('org.webjars:jquery:3.1.1-1')
+	compile('org.webjars:font-awesome:4.7.0')
 	compile('org.springframework.boot:spring-boot-devtools')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 
