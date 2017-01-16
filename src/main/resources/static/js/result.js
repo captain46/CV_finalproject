@@ -3,7 +3,6 @@
  */
 
 $('#textToSpeech').click(function () {
-    console.log("Hello452354");
     var text = $('#resultText').text();
     responsiveVoice.speak(text);
 });
