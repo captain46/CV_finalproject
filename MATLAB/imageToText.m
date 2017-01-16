@@ -1,6 +1,15 @@
 function [y,z] = imageToText(x)
-colorImage = imread(x);
-I = rgb2gray(colorImage);
+imageInfo = imfinfo(x);
+if strcmp(imageInfo.ColorType,'indexed')
+    [X,map]=imread(x);
+    I=ind2gray(X,map);
+elseif strcmp(imageInfo.ColorType,'truecolor')
+    colorImage=imread(x);
+    I=rgb2gray(colorImage);
+else
+    I=imread(x);
+    colorImage = I;
+end
 
 % Detect MSER regions.
 [mserRegions, mserConnComp] = detectMSERFeatures(I, ...
