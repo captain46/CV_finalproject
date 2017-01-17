@@ -1,15 +1,9 @@
 # CV_finalproject
-#_________                               __                 ____   ____.__       .__               
-#\_   ___ \  ____   _____ ______  __ ___/  |_  ___________  \   \ /   /|__| _____|__| ____   ____  
-#/    \  \/ /  _ \ /     \\____ \|  |  \   __\/ __ \_  __ \  \   Y   / |  |/  ___/  |/  _ \ /    \ 
-#\     \___(  <_> )  Y Y  \  |_> >  |  /|  | \  ___/|  | \/   \     /  |  |\___ \|  (  <_> )   |  \
-# \______  /\____/|__|_|  /   __/|____/ |__|  \___  >__|       \___/   |__/____  >__|\____/|___|  /
-#        \/             \/|__|                    \/                           \/               \/ 
 
-        λ Final Lab Practice 	17.01.2017
-        λ -
-        λ Title:	Detection and Recognition of Text in Natural Images 
-        λ Authors:	Simone Hierhold & Benjamin Krenn
+    λ Final Lab Practice 	17.01.2017
+    λ -
+    λ Title:	Detection and Recognition of Text in Natural Images 
+    λ Authors:	Simone Hierhold & Benjamin Krenn
          
 
 #1. Introduction
