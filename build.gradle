@@ -30,6 +30,8 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('org.apache.commons:commons-lang3:3.5')
+	compile('commons-codec:commons-codec:1.10')
+
 
 	// MATLAB Bindings
 	compile files('libs/javabuilder.jar')

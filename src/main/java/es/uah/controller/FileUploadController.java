@@ -4,6 +4,7 @@ import es.uah.domain.Picture;
 import es.uah.ocr.OCRService;
 import es.uah.ocr.domain.OCRPicture;
 import es.uah.service.UploadFileService;
+import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -11,7 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import sun.misc.BASE64Encoder;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.File;
 
@@ -36,20 +37,19 @@ public class FileUploadController {
 
     @RequestMapping(value = "index", method = RequestMethod.POST)
     public String uploadFile(@ModelAttribute("picture") Picture picture){
-        uploadFileService.uploadFile(picture);
-        return "redirect:/showresult.html";
+        File uploadedFile = uploadFileService.uploadFile(picture);
+
+        return "redirect:/showresult.html?image=" + uploadedFile.getName();
     }
 
     @RequestMapping(value = "showresult", method = RequestMethod.GET)
-    public void showResult(Model model) {
-        File imageToProcess = new File(System.getProperty("user.dir") + "/docs/pics/").listFiles()[0];
+    public void showResult(Model model, @RequestParam String image) {
+        File imageToProcess = new File(System.getProperty("java.io.tmpdir") + "/" + image);
         OCRPicture ocrPicture = ocrService.getOCRPicture(imageToProcess);
         model.addAttribute("resultText", ocrPicture.getContainingText());
+        String base64String = Base64.encodeBase64String(ocrPicture.getResultImage());
 
-        BASE64Encoder encoder = new BASE64Encoder();
-        String base64string = encoder.encode(ocrPicture.getResultImage());
-
-        model.addAttribute("image", base64string);
-        uploadFileService.deleteFiles();
+        model.addAttribute("image", base64String);
+        uploadFileService.deleteFile(imageToProcess);
     }
 }

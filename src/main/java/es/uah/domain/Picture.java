@@ -7,6 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
  */
 public class Picture {
     private String name;
+    private String path;
     private MultipartFile file;
 
     public Picture() {
@@ -33,4 +34,11 @@ public class Picture {
         this.file = file;
     }
 
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
 }

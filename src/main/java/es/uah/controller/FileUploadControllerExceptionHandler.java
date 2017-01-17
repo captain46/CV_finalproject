@@ -1,13 +1,14 @@
 package es.uah.controller;
 
 import es.uah.ocr.exception.MatlabBindingException;
+import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.http.HttpStatus;
-import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.io.File;
+import java.io.IOException;
 
 /**
  * @author bnjm@harmless.ninja - 1/16/17.
@@ -27,21 +28,11 @@ public class FileUploadControllerExceptionHandler {
     private void clearUploadPicture() {
         File dir = new File(System.getProperty("user.dir") + "/docs/pics/");
         if(dir.exists() && dir.isDirectory()) {
-            deleteFiles(dir);
-        }
-    }
-
-    private void deleteFiles(File directory) {
-        Assert.notNull(directory);
-        Assert.notNull(directory.list());
-        if(directory.list().length == 0) {
-            directory.delete();
-        } else {
-            for(String s : directory.list()) {
-                File file = new File(directory.getPath(), s);
-                file.delete();
+            try {
+                FileUtils.cleanDirectory(dir);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            directory.delete();
         }
     }
 }
